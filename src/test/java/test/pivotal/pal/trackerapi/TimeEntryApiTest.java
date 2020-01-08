@@ -37,17 +37,16 @@ public class TimeEntryApiTest {
         assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
         DocumentContext createJson = parse(createResponse.getBody());
-        assertThat(createJson.read("$.id", Long.class)).isGreaterThan(0);
+       assertThat(createJson.read("$.id", Long.class)).isGreaterThan(0);
         assertThat(createJson.read("$.projectId", Long.class)).isEqualTo(projectId);
-        assertThat(createJson.read("$.userId", Long.class)).isEqualTo(userId);
-        assertThat(createJson.read("$.date", String.class)).isEqualTo("2017-01-08");
-        assertThat(createJson.read("$.hours", Integer.class)).isEqualTo(8);
+       assertThat(createJson.read("$.userId", Long.class)).isEqualTo(userId);
+       assertThat(createJson.read("$.date", String.class)).isEqualTo("2017-01-08");
+       assertThat(createJson.read("$.hours", Integer.class)).isEqualTo(8);
     }
 
     @Test
     public void testList() {
         Long id = createTimeEntry();
-
 
         ResponseEntity<String> listResponse = restTemplate.getForEntity("/time-entries", String.class);
 
